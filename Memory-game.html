@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="Memory-game.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game</title>
+</head>
+<body>
+<div id="card-grid">
+
+  <div  data-face="green" id="a1" onclick="flipCard('a1')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="green" id="a2" onclick="flipCard('a2')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div data-face="red" id="a3" onclick="flipCard('a3')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="red" id="a4" onclick="flipCard('a4')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="purple" id="b1" onclick="flipCard('b1')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="purple" id="b2" onclick="flipCard('b2')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="yellow" id="b3" onclick="flipCard('b3')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="yellow" id="b4" onclick="flipCard('b4')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="orange" id="c1" onclick="flipCard('c1')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="orange" id="c2" onclick="flipCard('c2')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="blue" id="c3" onclick="flipCard('c3')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+  <div  data-face="blue" id="c4" onclick="flipCard('c4')" class="card-back">
+    <div class="question-mark">?</div>
+  </div>
+  
+</div>
+
+
+
+  <div id="button-menu">
+<button onclick="shuffleCards()" class="button">START</button>
+<button id="timer" class="button">Timer</button>
+  </div>
+
+  <script src="Memory-game.js" defer></script>
+</body>
+</html>
