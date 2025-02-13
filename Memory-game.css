@@ -31,6 +31,11 @@ body{
 .card-back,.card-front{
   height: 200px;
   width: 140px;
+  perspective: 1000px;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  transition: transform 1s ease; /* Smooth flip animation */
+  overflow: hidden;
+
 }
 /*
 .card-back{
@@ -39,7 +44,7 @@ body{
   font-size: 50px;
 } */
 
-.card-back {
+.card-back, .card-flip {
   width: 140px;
   height: 200px;
   background: black;
@@ -55,7 +60,7 @@ body{
   cursor: pointer;
 }
 
-.card-back::before {
+.card-back::before, .card-flip::before {
   content: "";
   position: absolute;
   top: 0;
@@ -92,8 +97,9 @@ body{
   text-shadow: 2px 2px 10px black, -2px -2px 10px black;
 }
 
-
-
+.card-flip{
+  transform: rotateY(180deg);
+}
 
 
 .card-front{
@@ -114,6 +120,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
@@ -121,7 +128,21 @@ body{
 }
 
 .button{
-width: 200px;
-height: 50px;
-font-size: 20px;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.Win{
+  height: 40px;
+  width: 200px;
+  background-color: green;
+  color: white;
+  position: absolute;
+  top: 100px;
+  left: 45vw;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: 40px;
 }

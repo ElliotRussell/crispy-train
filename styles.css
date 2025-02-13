@@ -1,32 +1,50 @@
 *{
   margin: 0px;
-}
-
-body{
-  height: 100vh;
-  width: 100vw;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .page{
-  background-color: rgb(22, 22, 22);
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  background-color: rgb(22, 22, 22);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(22, 22, 22);
+  border: none 1px rgba(255, 136, 0, 0.37);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
 }
 
 .select{
-
-  position: relative;
-  bottom: 100px;
   height: 150px;
   width: 350px;
   font-size: 20px;
   margin-bottom: 20px;
-  border: solid 1px white;
+  background: rgb(15, 14, 14);
+  border: solid 1px rgba(255, 136, 0, 0.37);
   border-radius: 20px;
   color: white;
   text-align: center;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select:hover{
+  position: relative;
+  bottom: 2px;
+  right: 2px;
+  background: rgb(34, 32, 32);
 }
