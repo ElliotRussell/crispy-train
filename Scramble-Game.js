@@ -80,11 +80,13 @@ const score = document.querySelector('.score')
 const wordLength = document.querySelector("#string-length-title")
 const wordSlider = document.getElementById("string-length-slider")
 const settingsMenu = document.getElementById('settings-menu')
-const body = document.querySelector('body')
+const page = document.querySelector('.page')
 let settingsToggle = false
 let hintEnabled = true
 const enableHintButton = document.querySelector('#enable-hint-button')
+const guess = document.getElementById("guess")
 let wordWord;
+const keyboard = document.querySelector('.keyboard')
 
 document.addEventListener('DOMContentLoaded', function() {
   return
@@ -93,6 +95,13 @@ document.addEventListener('DOMContentLoaded', function() {
 wordSlider.oninput = function() {
   wordLength.textContent =  `Word Length: ${this.value}`;
   getNewWord()
+}
+
+function addLetter(letter){
+  if (letter == ''){
+    guess.value = guess.value.slice(0, -1)
+  } else
+  guess.value += letter
 }
 
 document.addEventListener("keydown", function(event){
@@ -174,7 +183,15 @@ getNewWord();
 toggleSettings()
 
 function addSettingsMenu(){
-  document.body.prepend(settingsMenu)
+
+  const deviceWidth = window.innerWidth;
+  if(deviceWidth > 769)
+  {page.prepend(settingsMenu)}
+  else {
+    page.insertBefore(settingsMenu, keyboard);
+  }
+
+
 }
 
 function toggleSettings(){
@@ -184,7 +201,7 @@ if(settingsToggle){
 } else {settingsToggle = true}
 
   if(settingsToggle){
-settingsMenu.remove()
+page.removeChild(settingsMenu)
   } else {
 addSettingsMenu()
   }
@@ -199,3 +216,14 @@ function toggleHint(){
     enableHintButton.textContent = 'Hints Enabled'
   }
 }
+
+function mobile(){
+  const deviceWidth = window.innerWidth;
+  if(deviceWidth > 769){
+    guess.setAttribute('readonly', true);
+    keyboard.remove()
+  } else {
+   
+  }
+}
+mobile()

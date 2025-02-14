@@ -281,7 +281,28 @@ const wordList = [
     }
     })
     
-    
+function enter(){
+  cooldownActive = true;
+  setTimeout(() => {
+    cooldownActive = false;
+  }, cooldownDuration +200);
+  console.log(tileSatus)
+if (tileSatus.length === 5) {
+  checkWord(row).then(() => {
+      greenCount = greenCount;
+      checkLetterColor ()
+      row = String.fromCharCode(row.charCodeAt(0) + 1);
+      number = 0;
+      for (let i = 0; i < 5; i++) {
+        console.log(tileSatus)
+        tileSatus.pop();
+       
+      }
+    revealAnswer()
+    });
+  
+}
+}
     
     
     

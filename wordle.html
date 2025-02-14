@@ -7,10 +7,7 @@
     <title>Wordle Clone</title>
 </head>
 <body class="body">
-    <a href="index.html" style="width: 100px;">
-        <div class="top-bar">back</div>
-    </a>
-
+    <div class="top-bar">1</div>
     <div class="main-body">
         <div class="input">
         <div class="grid">
@@ -47,40 +44,40 @@
         </div>
         <div class="keyboard">
             <div class="keyboard-top-row">
-                <div id="Q" class="key">q</div>
-                <div id="W" class="key">w</div>
-                <div id="E" class="key">e</div>
-                <div id="R" class="key">r</div>
-                <div id="T" class="key">t</div>
-                <div id="Y" class="key">y</div>
-                <div id="U" class="key">u</div>
-                <div id="I" class="key">i</div>
-                <div id="O" class="key">o</div>
-                <div id="P" class="key">p</div>
+                <div onclick="addLetter('Q')" id="Q" class="key">q</div>
+                <div onclick="addLetter('W')" id="W" class="key">w</div>
+                <div onclick="addLetter('E')" id="E" class="key">e</div>
+                <div onclick="addLetter('R')" id="R" class="key">r</div>
+                <div onclick="addLetter('T')" id="T" class="key">t</div>
+                <div onclick="addLetter('Y')" id="Y" class="key">y</div>
+                <div onclick="addLetter('U')" id="U" class="key">u</div>
+                <div onclick="addLetter('I')" id="I" class="key">i</div>
+                <div onclick="addLetter('O')" id="O" class="key">o</div>
+                <div onclick="addLetter('P')" id="P" class="key">p</div>
             </div>
            <div class="keyboard-mid-row">
             <div class="key-spacer"></div>
-            <div id="A" class="key">a</div>
-            <div id="S" class="key">s</div>
-            <div id="D" class="key">d</div>
-            <div id="F" class="key">f</div>
-            <div id="G" class="key">g</div>
-            <div id="H" class="key">h</div>
-            <div id="J" class="key">j</div>
-            <div id="K" class="key">k</div>
-            <div id="L" class="key">l</div>
+            <div onclick="addLetter('A')" id="A" class="key">a</div>
+            <div onclick="addLetter('S')" id="S" class="key">s</div>
+            <div onclick="addLetter('D')" id="D" class="key">d</div>
+            <div onclick="addLetter('F')" id="F" class="key">f</div>
+            <div onclick="addLetter('G')" id="G" class="key">g</div>
+            <div onclick="addLetter('Q')" id="H" class="key">h</div>
+            <div onclick="addLetter('J')" id="J" class="key">j</div>
+            <div onclick="addLetter('K')" id="K" class="key">k</div>
+            <div onclick="addLetter('L')" id="L" class="key">l</div>
             <div class="key-spacer"></div>
            </div>
             <div class="keyboard-bottom-row">
-                <div class="key-comand">entr</div>
-                <div id="Z" class="key">z</div>
-                <div id="X" class="key">x</div>
-                <div id="C" class="key">c</div>
-                <div id="V" class="key">v</div>
-                <div id="B" class="key">b</div>
-                <div id="N" class="key">n</div>
-                <div id="M" class="key">m</div>
-                <div class="key-comand">back</div>
+                <div onclick="enter()" class="key-comand">entr</div>
+                <div onclick="addLetter('Z')" id="Z" class="key">z</div>
+                <div onclick="addLetter('X')" id="X" class="key">x</div>
+                <div onclick="addLetter('C')" id="C" class="key">c</div>
+                <div onclick="addLetter('V')" id="V" class="key">v</div>
+                <div onclick="addLetter('B')" id="B" class="key">b</div>
+                <div onclick="addLetter('N')" id="N" class="key">n</div>
+                <div onclick="addLetter('M')" id="M" class="key">m</div>
+                <div onclick="addLetter('')" class="key-comand">back</div>
             </div>
        
         </div>

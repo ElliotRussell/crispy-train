@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="Scramble-Game.css">
 </head>
 <body>
+  <div class="page">
   <a href="index.html" style="position: relative; bottom: 600px; right: 700px;">back</a>
   <div id="settings-menu">
   <div>
@@ -31,7 +32,7 @@
           <input id="lastWord" type="text" placeholder="previous word" readonly>
           <input id="hint-display" type="text" placeholder="No hints yet" readonly>
         </div>
-        <input readonly type="text" id="guess" autocomplete="off">  
+        <input type="text" id="guess" autocomplete="off">  
         <div id="buttons">
           <button onclick="getNewWord()" id="new-word">New Word</button>
           <button onclick="hint()" id="hint">Hint</button>
@@ -43,6 +44,46 @@
     </div>
   </div>
 
+  <div class="keyboard">
+    <div class="keyboard-top-row">
+        <div onclick="addLetter('q')" id="Q" class="key">q</div>
+        <div onclick="addLetter('w')" id="W" class="key">w</div>
+        <div onclick="addLetter('e')" id="E" class="key">e</div>
+        <div onclick="addLetter('r')" id="R" class="key">r</div>
+        <div onclick="addLetter('t')" id="T" class="key">t</div>
+        <div onclick="addLetter('y')" id="Y" class="key">y</div>
+        <div onclick="addLetter('u')" id="U" class="key">u</div>
+        <div onclick="addLetter('i')" id="I" class="key">i</div>
+        <div onclick="addLetter('o')" id="O" class="key">o</div>
+        <div onclick="addLetter('p')" id="P" class="key">p</div>
+    </div>
+   <div class="keyboard-mid-row">
+    <div class="key-spacer"></div>
+    <div onclick="addLetter('a')" id="A" class="key">a</div>
+    <div onclick="addLetter('s')" id="S" class="key">s</div>
+    <div onclick="addLetter('d')" id="D" class="key">d</div>
+    <div onclick="addLetter('f')" id="F" class="key">f</div>
+    <div onclick="addLetter('g')" id="G" class="key">g</div>
+    <div onclick="addLetter('h')" id="H" class="key">h</div>
+    <div onclick="addLetter('j')" id="J" class="key">j</div>
+    <div onclick="addLetter('k')" id="K" class="key">k</div>
+    <div onclick="addLetter('l')" id="L" class="key">l</div>
+    <div class="key-spacer"></div>
+   </div>
+    <div class="keyboard-bottom-row">
+        <div onclick="submitWord()" class="key-comand">entr</div>
+        <div onclick="addLetter('z')" id="Z" class="key">z</div>
+        <div onclick="addLetter('x')" id="X" class="key">x</div>
+        <div onclick="addLetter('c')" id="C" class="key">c</div>
+        <div onclick="addLetter('v')" id="V" class="key">v</div>
+        <div onclick="addLetter('b')" id="B" class="key">b</div>
+        <div onclick="addLetter('n')" id="N" class="key">n</div>
+        <div onclick="addLetter('m')" id="M" class="key">m</div>
+        <div onclick="addLetter('')" class="key-comand">back</div>
+    </div>
+
+</div>
+</div>
   <script src="Scramble-Game.js"></script>
 </body>
 </html>
