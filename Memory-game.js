@@ -37,8 +37,10 @@ const missesCounter = document.getElementById('score')
         }
       if(number == 2){
         currentCard.classList.add('card-flip')
-        CardFaceDown(id)
+        CardFaceUp(id)
       }
+      } else if (number == 2){
+        CardFaceDown(id)
       }
       }
     }
@@ -47,22 +49,25 @@ const missesCounter = document.getElementById('score')
 
   function CardFaceDown(id){
     let currentCard = document.getElementById(id);
-    if (currentCard.classList.contains('card-front')){;
-      currentCard.remove("card-flip")
+    if (currentCard.classList.contains('card-flip')){;
+      currentCard.classList.remove("card-flip")
     };
       return 
   }
 
-  async function faceCardUp(id){
+    function faceCardUp(id){
     let currentCard = document.getElementById(id)
     currentCard.classList.add("card-flip")
     const face = currentCard.getAttribute('data-face');
-    const displayFace = document.querySelector('.face')
+    const faceId = id + 'a'
+    console.log(faceId)
+    const displayFace = document.getElementById(faceId)
     displayFace.style.backgroundColor = face;
-    const img = document.querySelector('.img')
+    const imgId = id + 'b'
+    const img = document.getElementById(imgId)
     img.classList.add('img')
     img. textContent = 'Cat'
-    displayFace.appendChild(img)
+    
     return face
 }
 
@@ -74,6 +79,8 @@ let score = 0
 let pairsFound = 0
 
   async function flipCard(id){
+    console.log(id)
+    let face;
     let currentCard = document.getElementById(id)
       if (currentCard.classList.contains('card-flip')){
         currentCard.classList.remove('card-flip')
@@ -92,7 +99,6 @@ let pairsFound = 0
         } else {
             card2 = face
             card2Id = id
-            console.log(2)
             if(card1 === card2){
               faceUpCards -= 2
               card1= false
@@ -103,8 +109,7 @@ let pairsFound = 0
                 card2 = false
                 score ++
                 missesCounter.textContent = 'Misses: ' + score
-              
-                await pause(500)
+                await pause(1000)
                 CardFaceDown(card1Id)
                 CardFaceDown(card2Id)
             }
@@ -136,7 +141,7 @@ let pairsFound = 0
   }
 
   async function shuffleCards(){
-    await cycleId(1, 1)
+    await cycleId(1, 2)
     shuffle(cardFaces)
     let letter
     let id;
@@ -157,7 +162,7 @@ let pairsFound = 0
       timer.textContent = 'Timer: ' + q + 's'
       await pause(1000)
     }
-    cycleId(1, 1)
+    cycleId(2, 0)
       timer.textContent = 'Go!'
     await pause(4000)
     timer.textContent = 'Timer'
