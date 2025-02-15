@@ -23,29 +23,30 @@ const missesCounter = document.getElementById('score')
   }
 
   async function cycleId(number, code){
-    let id;
-    for(let i = 0; i < 3; i++){
-      let letter = String.fromCharCode(97 + i)
-      for(let j = 0; j < 4; j ++){
-      id = letter + (j + 1);
-      let currentCard = document.getElementById(id);
+    let cards = document.querySelectorAll('.card');
+    
+    for (let card of cards) {
+        let id = card.id;
       if(number == 1){
         if(code == 1){
           currentCard.classList.toggle('card-flip')
           animateCard(id)
           CardFaceDown(id)
         }
-      if(number == 2){
+      if(code == 2){
         currentCard.classList.add('card-flip')
-        CardFaceUp(id)
+        animateCard(id)
+        faceCardUp(id)
       }
       } else if (number == 2){
-        CardFaceDown(id)
-      }
-      }
+        if (code == 1){
+          CardFaceDown(id)
+        }else if (code == 2){
+          faceCardUp(id)
+        }
+      } 
     }
   }
-
 
   function CardFaceDown(id){
     let currentCard = document.getElementById(id);
@@ -70,30 +71,45 @@ const missesCounter = document.getElementById('score')
     return face
 }
 
+async function unlockCards(){
+  await pause(600)
+  lock = false
+  return
+}
+
 let card1= false
 let card1Id;
 let card2;
 let card2Id;
 let score = 0
 let pairsFound = 0
+let lock = false
 
   async function flipCard(id){
+    if (lock){
+      return
+    }
+    lock = true
     let face;
     let currentCard = document.getElementById(id)
       if (currentCard.classList.contains('card-flip')){
-        currentCard.classList.remove('card-flip')
-      if (faceUpCards != 0){
+        CardFaceDown(id);
+      if (faceUpCards > 0){
         faceUpCards --
+        lock = false
         return
       }
-      if (faceUpCards >= 2) return;
+      if (faceUpCards >= 2) {
+        lock = false
+        return;}
       } else {
         faceUpCards ++
         face = faceCardUp(id)
     
-        if (typeof(card1) !== 'string' || !card1){
+        if (!card1){
           card1 = face
           card1Id = id
+          lock = false
         } else {
             card2 = face
             card2Id = id
@@ -102,14 +118,18 @@ let pairsFound = 0
               card1= false
               card2 = false
               pairsFound ++
+              lock = false
             } else if (card1 !== card2) {
+                
+                await pause(800)
+                CardFaceDown(card1Id)
+                CardFaceDown(card2Id)
+                lock = false
                 card1= false
                 card2 = false
                 score ++
                 missesCounter.textContent = 'Misses: ' + score
-                await pause(1000)
-                CardFaceDown(card1Id)
-                CardFaceDown(card2Id)
+                
             }
         }
         
@@ -118,10 +138,15 @@ let pairsFound = 0
         const winMessage = document.createElement('div')
         winMessage.classList.add('Win')
         document.body.appendChild(winMessage)
-        winMessage.textContent = '!'
-        cycleId(1, 1)
-      }  
-  }
+        winMessage.textContent = 'Nice!'
+        await pause(800)
+        cycleId(2, 1)
+        await pause(800)
+        winMessage.remove()
+        pairsFound = 0
+        score = 0
+      } 
+    } 
 
   function setCardFace(id, arrayNumber) {
     let currentCard = document.getElementById(id)
@@ -138,12 +163,14 @@ let pairsFound = 0
   }
 
   async function shuffleCards(){
-    await cycleId(1, 2)
+    await cycleId(2, 1)
     shuffle(cardFaces)
     let letter
     let id;
     let arrayNumber = 0
     score = 0
+    pairsFound = 0
+    missesCounter.textContent = 'Misses: ' + score
 
     for(let i=1; i<4 ;i++){
       id = ''
@@ -160,7 +187,7 @@ let pairsFound = 0
       timer.textContent = 'Timer: ' + q + 's'
       await pause(1000)
     }
-    cycleId(2, 0)
+    cycleId(2, 1)
       timer.textContent = 'Go!'
     await pause(4000)
     timer.textContent = 'Timer'
