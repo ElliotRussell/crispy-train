@@ -60,7 +60,6 @@ const missesCounter = document.getElementById('score')
     currentCard.classList.add("card-flip")
     const face = currentCard.getAttribute('data-face');
     const faceId = id + 'a'
-    console.log(faceId)
     const displayFace = document.getElementById(faceId)
     displayFace.style.backgroundColor = face;
     const imgId = id + 'b'
@@ -79,7 +78,6 @@ let score = 0
 let pairsFound = 0
 
   async function flipCard(id){
-    console.log(id)
     let face;
     let currentCard = document.getElementById(id)
       if (currentCard.classList.contains('card-flip')){
@@ -123,7 +121,6 @@ let pairsFound = 0
         winMessage.textContent = '!'
         cycleId(1, 1)
       }  
-      console.log('pairs found: ' + pairsFound)
   }
 
   function setCardFace(id, arrayNumber) {
@@ -146,6 +143,7 @@ let pairsFound = 0
     let letter
     let id;
     let arrayNumber = 0
+    score = 0
 
     for(let i=1; i<4 ;i++){
       id = ''

@@ -164,3 +164,31 @@ body{
   align-self: center;
   font-size: 40px;
 }
+
+@media screen and (max-height: 962px){
+  #card-grid{
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-height: 850px){
+  #card-grid{
+    margin-top: 200px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  #card-grid{
+    grid-template-columns:  80px 80px 80px 80px;
+    grid-template-rows:  150px 150px 150px;
+    grid-gap: 6px;
+  }
+  .card-container{
+    perspective: 1000px;
+    width: 80px;
+    height: 150px;
+  }
+  .button{
+    width: 100px;
+  }
+}
