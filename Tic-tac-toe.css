@@ -41,8 +41,22 @@ body{
     align-items: center;
 }
 
+.tile-win{
+    background: green;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .mark{
     color: white;
+    font-size: 100px;
+    user-select: none;
+}
+
+.mark-win{
+    color: rgb(9, 255, 0);
     font-size: 100px;
     user-select: none;
 }
