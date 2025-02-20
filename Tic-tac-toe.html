@@ -10,7 +10,8 @@
     <div id="board">
         <h1 id="to-move"></h1>
         <div id="board-grid">
-            <div  id="1" onclick="markTile(1)" class="tile">
+
+            <div id="1" onclick="markTile(1)" class="tile">
                 <span class="mark"></span>
             </div>
             <div  id="2" onclick="markTile(2)" class="tile">
@@ -38,6 +39,10 @@
                 <span class="mark"></span>
             </div>
            
+        </div>
+        <div id="button-menu">
+            <div onclick="getDifficulty()" id="difficulty" class="button">PvE</div>
+            <div onclick="getNewGame()" id="new-game" class="button">New Game</div>
         </div>
     </div>
 

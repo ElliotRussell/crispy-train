@@ -1,32 +1,51 @@
 let marker = "O"
 const toMove = document.querySelector('#to-move')
 toMove.textContent = marker + "'s move"
-const boardO = []
-const boardX = []
-const optionsLeft = [1,2,3,4,5,6,7,8,9]
+let boardO = []
+let boardX = []
+let optionsLeft = [1,2,3,4,5,6,7,8,9]
+let difficulty = 'PvE'
+
+function getDifficulty(){
+    difficulty = difficulty === 'PvE' ? 'PvP': 'PvE'
+    const difficultyButton = document.querySelector('#difficulty')
+    difficultyButton.textContent = difficulty
+    getNewGame()
+}
+
+function getNewGame(){
+    console.clear()
+    marker = 'O'
+    toMove.textContent = marker + "'s move"
+    boardO = []
+    boardX = []
+    optionsLeft = [1,2,3,4,5,6,7,8,9]
+    //difficulty = 'PvE'
+    for (let i = 1; i < 10; i++){
+        const currenTile = document.getElementById(i)
+        currenTile.children[0].textContent = ''
+        currenTile.classList.remove('tile-win')
+        currenTile.classList.add('tile')
+    }
+}
 
 function markTile(id){
-    console.log(id)
     let index = id - 1
 
     const currenTile = document.getElementById(id)
     currenTile.children[0].textContent = marker
     let array;
     if (marker == 'O'){
+        optionsLeft.splice(index, 1, false)
         array = insertInOrder(boardO, id)
-        optionsLeft.splice(index, 1, false)
-        console.log('O')
     } else {
-        array = insertInOrder(boardX, id) 
         optionsLeft.splice(index, 1, false)
-        console.log('X')
-        console.log(optionsLeft)
+        array = insertInOrder(boardX, id) 
     }
     const passedNumbers = checkWin(array)
     if (passedNumbers){
         console.log(passedNumbers)
         const tile0 = document.getElementById(passedNumbers[0])
-        console.log(tile0)
         tile0.classList.add('tile-win')
         tile0.classList.remove('tile')
         const tile1 = document.getElementById(passedNumbers[1])
@@ -39,7 +58,7 @@ function markTile(id){
     }
     marker == "O" ? marker = 'X' : marker = "O"
     toMove.textContent = marker + "'s move"
-    if(marker == 'X'){
+    if(marker == 'X' && difficulty === 'PvE'){
     aiMove(optionsLeft)
 }
 }
@@ -50,7 +69,6 @@ function aiMove(optionsLeft){
     while (!optionsLeft[value]){
         value = Math.floor(Math.random()*(optionsLeft.length))
     }
-    console.log('option left: ' + optionsLeft.length)
     let id = optionsLeft[value]
     markTile(id)
 }
@@ -61,7 +79,6 @@ function insertInOrder(array, number) {
       index++;
     }
     array.splice(index, 0, number);
-    console.log('option left: ' + array)
     return array;
   }
 
@@ -84,8 +101,6 @@ function checkWin(array){
 
     while(!foundWinCon && windex < winCons.length){
         let checkFor = winCons[windex]
-        console.log('loop1 ' + windex)
-        console.log('checkFor' + checkFor)
         if(array.includes(checkFor)){
             console.log('step 1 passes')
             passedNumbers = matchSlopes(checkFor, array)
@@ -94,7 +109,7 @@ function checkWin(array){
             foundWinCon =true
             break
         } else {
-            console.log('step 1 fails')
+
         }
         windex ++
     }
@@ -107,6 +122,8 @@ function matchSlopes(condition, array){
     let passedNumbers
     let slopeIndex = 0
     while(!foundSlope && slopeIndex < targetSlopes.length){
+       slopeIndex = (condition === 2 || condition === 3) && (slopeIndex === 0) ? 1: slopeIndex
+       console.log(slopeIndex)
         passedNumbers = cycleSlopes(targetSlopes[slopeIndex], condition, array)
         if (passedNumbers) {
             foundSlope = true
@@ -135,41 +152,5 @@ function cycleSlopes(targetSlope, condition, array){
         }
     }
     passedNumbers = []
-    console.log('mission failed')
     return null
 }
-
-
-/* 
-    let slope1 = array[1] - array[0]
-    let slope2 = array[2] - array[1]
-    let slope3 = array[3] - array[2]
-    let slope4 = array[4] - array[3]
-    let slope5 = array[5] - array[4]
-    for(let i=1; i < 6; i++){
-        let currentSlope = 'slope' + i
-        let nextSlope = 'slope' + (i + 1)
-        let OtherNextSlope = 'slope' + (i + 2)
-        if(currentSlope == targetSlope){
-            //repeat with next
-        } else if ((nextSlope + currentSlope) = targetSlope){
-
-        } else if
-    }
-
-
-
-
- if(array.lenght() >= 3){
-        let slope1 = array[1] - array[0]
-        let slope2 = array[2] - array[1]
-        let slope3 = array[3] - array[2]
-        let slope4 = array[4] - array[3]
-        let slope5 = array[5] - array[4]
-       switch(1 || 3 || 4){
-        case slope1
-       }
-
-
-    }
-*/
