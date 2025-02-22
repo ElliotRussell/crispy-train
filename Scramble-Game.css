@@ -13,6 +13,33 @@ body{
   align-items: center;
 }
 
+#back{
+  position: fixed;
+  top: 25px;
+  left: 10px;
+  color: white;
+  background: rgb(77, 72, 72);
+  padding: 7px 12px 7px 12px;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+#back:hover{
+  background: rgb(87, 82, 82);
+  top: 24px;
+  left: 10px;
+}
+
+#back:active{
+  background: rgb(53, 51, 47);
+  top: 26px;
+  left: 10px;
+}
+
+#back-link{
+  color: white;
+}
+
 .page{
   background-color: rgb(53, 56, 53);
   padding: 10px;
