@@ -20,6 +20,7 @@ body{
 #display-menu{
     display: flex;
     gap: 50px;
+    -webkit-user-select: none;
 }
 
 #to-move{
@@ -98,3 +99,11 @@ gap: 8px;
     position: relative;
     top: 2px;
 }
+
+@media screen and (max-width: 660px){
+    #board-grid{
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    }
+
+  }

@@ -33,6 +33,25 @@ function getDifficulty(){
     getNewGame()
 }
 
+function switchsides(){
+    marker == "O" ? marker = 'X' : marker = "O"
+    if(marker == 'X' && difficulty !== 'PvP'){
+        switch(difficulty){
+            case 'Easy':
+                 easyAiMove(optionsLeft)
+            break;
+            case 'Medium':
+                mediumAi(optionsLeft)
+            break;
+            case 'Hard':
+                hardAi()
+                break;
+            default:
+                alert('difficulty not found. Ai cannot move')
+
+        }
+}
+}
 function getNewGame(){
     console.clear()
     marker = 'O'
@@ -86,6 +105,7 @@ function markTile(id){
     }
     console.log(optionsLeft)
     if (!optionsLeft.some(element => typeof element === 'number')) {
+        toMove.textContent = 'Tie Game!'
         console.log('pre cat');
         return
     }
