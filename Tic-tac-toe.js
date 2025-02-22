@@ -1,13 +1,33 @@
 let marker = "O"
 const toMove = document.querySelector('#to-move')
+const streak = document.querySelector('#streak')
+let score = 0
 toMove.textContent = marker + "'s move"
+streak.textContent = "Streak: " + score
 let boardO = []
 let boardX = []
 let optionsLeft = [1,2,3,4,5,6,7,8,9]
-let difficulty = 'PvE'
+let difficulty = 'Easy'
+let currentBoard;
+//const difficultysArray = ['Easy', 'Medium' , 'Hard', 'PvP' ]
 
 function getDifficulty(){
-    difficulty = difficulty === 'PvE' ? 'PvP': 'PvE'
+    switch (difficulty){
+        case 'Easy':
+            difficulty = 'Medium'
+        break
+        case 'Medium':
+            difficulty = 'Hard'
+        break
+        case 'Hard':
+            difficulty = 'PvP'
+        break
+        case 'PvP':
+            difficulty = 'Easy'
+        break
+        default:
+            alert('difficulty not found. Cannot switch.')
+    }
     const difficultyButton = document.querySelector('#difficulty')
     difficultyButton.textContent = difficulty
     getNewGame()
@@ -17,6 +37,7 @@ function getNewGame(){
     console.clear()
     marker = 'O'
     toMove.textContent = marker + "'s move"
+    streak.textContent = "Streak: " + score
     boardO = []
     boardX = []
     optionsLeft = [1,2,3,4,5,6,7,8,9]
@@ -30,6 +51,7 @@ function getNewGame(){
 }
 
 function markTile(id){
+    if (!optionsLeft.includes(id)) {return}
     let index = id - 1
 
     const currenTile = document.getElementById(id)
@@ -38,12 +60,18 @@ function markTile(id){
     if (marker == 'O'){
         optionsLeft.splice(index, 1, false)
         array = insertInOrder(boardO, id)
+        currentBoard = 'O'
     } else {
         optionsLeft.splice(index, 1, false)
-        array = insertInOrder(boardX, id) 
+        array = insertInOrder(boardX, id)
+        currentBoard = 'X' 
     }
     const passedNumbers = checkWin(array)
     if (passedNumbers){
+        score = marker == "O" ? score + 1: 0
+        streak.textContent = "Streak: " + score
+        console.log('score ' + score)
+        console.log('marker ' + marker)
         console.log(passedNumbers)
         const tile0 = document.getElementById(passedNumbers[0])
         tile0.classList.add('tile-win')
@@ -56,18 +84,92 @@ function markTile(id){
         tile2.classList.remove('tile')
         return
     }
+    console.log(optionsLeft)
+    if (!optionsLeft.some(element => typeof element === 'number')) {
+        console.log('pre cat');
+        return
+    }
     marker == "O" ? marker = 'X' : marker = "O"
     toMove.textContent = marker + "'s move"
-    if(marker == 'X' && difficulty === 'PvE'){
-    aiMove(optionsLeft)
+    if(marker == 'X' && difficulty !== 'PvP'){
+        switch(difficulty){
+            case 'Easy':
+                 easyAiMove(optionsLeft)
+            break;
+            case 'Medium':
+                mediumAi(optionsLeft)
+            break;
+            case 'Hard':
+                hardAi()
+                break;
+            default:
+                alert('difficulty not found. Ai cannot move')
+
+        }
 }
 }
 
-function aiMove(optionsLeft){
+function hardAi(){
+    let nextMove;
+    for (let i = 0; i < 9; i++){
+        let value = i
+        if(optionsLeft[value]){
+          nextMove = AiWin(optionsLeft, optionsLeft[value], 'O')
+        }
+        if (nextMove) {markTile(nextMove); break}
+    }
+    if (nextMove) return
+    mediumAi(optionsLeft)
+}
+
+function mediumAi(optionsLeft){
+    const randomNumber = Math.random()
+    if (randomNumber > 0.75) {
+        console.log('cheeky bugger')
+        hardAi()
+        return
+        }
+    let nextMove;
+    for (let i = 0; i < 9; i++){
+        let value = i
+        if(optionsLeft[value]){
+          nextMove = AiWin(optionsLeft, optionsLeft[value], 'X')
+        }
+        if (nextMove) {markTile(nextMove); break}
+    }
+    if (nextMove) return
+    easyAiMove(optionsLeft)
+}
+
+function AiWin(optionsLeft, addedMove, lookAtBoard){
+    let newarray;
+    newarray = (lookAtBoard == "X") ? [...boardX]: [...boardO]
+    insertInOrder(newarray, addedMove)
+    const win = checkWin(newarray)
+    if(win){
+        return addedMove
+    } else {
+        return
+       }
+    /*
+    let winningBoards = [
+        [1,2,3],[4,5,6],[7,8,9],
+        [1,4,7],[2,5,8],[3,6,9],
+        [1,5,9],[3,5,7]
+]
+let newArray
+*/
+}
+
+function easyAiMove(optionsLeft){
     let value
     value = Math.floor(Math.random()*(optionsLeft.length))
     while (!optionsLeft[value]){
         value = Math.floor(Math.random()*(optionsLeft.length))
+        if (!optionsLeft.some(element => typeof element === 'number')) {
+            console.log('cat')
+            break
+        }
     }
     let id = optionsLeft[value]
     markTile(id)

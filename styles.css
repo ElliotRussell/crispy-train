@@ -24,6 +24,10 @@
   border-radius: 10px;
   max-width: 400px;
   width: 100%;
+  max-height: 550px;
+  min-height: 140px;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .select{
@@ -47,4 +51,19 @@
   bottom: 2px;
   right: 2px;
   background: rgb(34, 32, 32);
+}
+
+@media screen and (min-width: 900px){
+  .menu{
+    display: grid;
+    grid-template-columns: 350px 350px;
+    gap: 10px;
+    max-width: 800px;
+    overflow:scroll;
+    scrollbar-width: none;
+  }
+
+  .select{
+    margin-bottom: 0px;
+  }
 }

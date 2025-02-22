@@ -8,7 +8,11 @@
 </head>
 <body>
     <div id="board">
-        <h1 id="to-move"></h1>
+        <div id="display-menu">
+            <h1 id="to-move">Not found</h1>
+            <h1 id="streak">Not found</h1>
+        </div>
+    
         <div id="board-grid">
 
             <div id="1" onclick="markTile(1)" class="tile">
@@ -41,7 +45,7 @@
            
         </div>
         <div id="button-menu">
-            <div onclick="getDifficulty()" id="difficulty" class="button">PvE</div>
+            <div onclick="getDifficulty()" id="difficulty" class="button">Easy</div>
             <div onclick="getNewGame()" id="new-game" class="button">New Game</div>
         </div>
     </div>

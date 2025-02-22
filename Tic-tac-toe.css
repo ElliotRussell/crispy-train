@@ -17,7 +17,16 @@ body{
 
 }
 
+#display-menu{
+    display: flex;
+    gap: 50px;
+}
+
 #to-move{
+    color: white;
+}
+
+#streak{
     color: white;
 }
 
