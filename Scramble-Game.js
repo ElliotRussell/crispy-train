@@ -223,7 +223,7 @@ function mobile(){
     guess.setAttribute('readonly', true);
     keyboard.remove()
   } else {
-   
+    guess.setAttribute('readonly', true);
   }
 }
 mobile()
