@@ -6,10 +6,13 @@ const cardFaces = [
   "orange",'orange',
   'blue', 'blue'
 ]
-
+//localStorage.setItem('lowestScore', JSON.stringify(null))
 let faceUpCards = 0
 const timer = document.getElementById('timer')
 const missesCounter = document.getElementById('score')
+const lowScore = document.getElementById('low-score')
+let lowestScore = JSON.parse(localStorage.getItem('lowestScore')) || null
+lowScore.textContent = lowestScore ? `Best: ${lowestScore}` : 'Best: N/A'
 
   function pause(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -135,18 +138,39 @@ let lock = false
         
       }
       if(pairsFound == 6){
+        //if (!gameRunning){return}
         const winMessage = document.createElement('div')
         winMessage.classList.add('Win')
         document.body.appendChild(winMessage)
-        winMessage.textContent = 'Nice!'
-        await pause(800)
-        cycleId(2, 1)
-        await pause(800)
+        winMessage.textContent = clock
+        
+        await resetGame()
         winMessage.remove()
-        pairsFound = 0
-        score = 0
+
+        setNewLowScore()
       } 
     } 
+
+  async function resetGame (){
+    gameRunning = false
+    pairsFound = 0
+    score = 0
+    await pause(800)
+    cycleId (2,1)
+  }
+
+  function setNewLowScore(){
+    if ((clock < lowestScore && lowestScore) || !lowestScore){
+      console.log('new score')
+      localStorage.setItem('lowestScore', JSON.stringify(clock))
+      setTimeout(0)
+      //lowScore.textContent = `Best: ${lowestScore}`
+      //while (lowScore.textContent != `Best: ${lowestScore}` && clock){
+      //  console.log('again')
+       // lowScore.textContent = `Best: ${lowestScore}`
+     // }
+    } else console.log('no new score')
+  }
 
   function setCardFace(id, arrayNumber) {
     let currentCard = document.getElementById(id)
@@ -162,7 +186,12 @@ let lock = false
     }
   }
 
+let gameRunning = false
+let clock = null
   async function shuffleCards(){
+    clock = 0
+    gameRunning = true
+    pairsFound = 0
     await cycleId(2, 1)
     shuffle(cardFaces)
     let letter
@@ -188,7 +217,15 @@ let lock = false
       await pause(1000)
     }
     cycleId(2, 1)
-      timer.textContent = 'Go!'
-    await pause(4000)
-    timer.textContent = 'Timer'
+    timer.textContent = 'Go!'
+
+    clock = 1
+    while(pairsFound !== 6 && gameRunning){
+      await pause(1000)
+      timer.textContent = 'Timer ' + clock
+      if(gameRunning){
+        clock++
+      }
+      else break
+    }
   }
