@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  -webkit-user-select: none;
+}
+
+body{
+  background: wheat;
+  height: 100vh;
+  width: 100vw;
+}
+
+#page{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#timer{
+  text-align: center;
+  color: black;
+  font-size: 80px;
+  background-color: rgba(223, 135, 3, 0.719);
+  padding: 30px 50px 30px 50px;
+  width: 300px;
+  border-radius: 35px;
+}
+
+#timer:hover{
+  background-color: rgba(223, 135, 3, 0.904);
+}
