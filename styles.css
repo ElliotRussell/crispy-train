@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgb(22, 22, 22);
+  background-color: wheat;
 }
 
 .menu {
@@ -20,23 +21,26 @@
   align-items: center;
   background-color: rgb(22, 22, 22);
   border: none 1px rgba(255, 136, 0, 0.37);
-  padding: 20px;
+  padding: 2px;
   border-radius: 10px;
   max-width: 400px;
-  width: 100%;
+  width: 712px;
   max-height: 550px;
   min-height: 140px;
   overflow: scroll;
   scrollbar-width: none;
+  background-color: wheat;
 }
 
 .select{
+  text-decoration:wavy;
   height: 150px;
   width: 350px;
   font-size: 20px;
   margin-bottom: 20px;
   background: rgb(15, 14, 14);
   border: solid 1px rgba(255, 136, 0, 0.37);
+  border: solid 1px rgba(255, 136, 0, 1);
   border-radius: 20px;
   color: white;
   text-align: center;
@@ -44,6 +48,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(119, 85, 40);
 }
 
 .select:hover{
@@ -51,6 +56,7 @@
   bottom: 2px;
   right: 2px;
   background: rgb(34, 32, 32);
+  background-color: rgb(112, 70, 14);
 }
 
 @media screen and (min-width: 900px){
